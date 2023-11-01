@@ -3,7 +3,7 @@ import React from "react";
 
 const Home = () => {
     return (
-        <div className="container max-w-6xl mx-auto">
+        <div className="container max-w-6xl mx-auto py-8">
             <Gallery />
         </div>
     );
