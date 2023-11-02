@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { motion } from "framer-motion";
 import Joyride from "react-joyride";
+import Image from "next/image";
 
 const ImagePopup = ({ images, currentIndex, onClose, onNext, onPrevious }) => {
     const [tourOpen, setTourOpen] = useState(true);
@@ -88,7 +89,7 @@ const ImagePopup = ({ images, currentIndex, onClose, onNext, onPrevious }) => {
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-plus-circle z-[51] rotate-45 text-red-500 absolute right-[7%] top-[2%] lg:top-2  cursor-pointer"
+                        className="lucide lucide-plus-circle z-[51] rotate-45 text-red-500 absolute right-[7%] top-[2%] lg:top-2  cursor-pointer"
                     >
                         <circle cx="12" cy="12" r="10" />
                         <path d="M8 12h8" />
@@ -110,7 +111,7 @@ const ImagePopup = ({ images, currentIndex, onClose, onNext, onPrevious }) => {
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-arrow-big-right rotate-180 "
+                            className="lucide lucide-arrow-big-right rotate-180 "
                         >
                             <path d="M6 9h6V5l7 7-7 7v-4H6V9z" />
                         </svg>
@@ -130,7 +131,7 @@ const ImagePopup = ({ images, currentIndex, onClose, onNext, onPrevious }) => {
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-arrow-big-right"
+                            className="lucide lucide-arrow-big-right"
                         >
                             <path d="M6 9h6V5l7 7-7 7v-4H6V9z" />
                         </svg>
@@ -149,11 +150,20 @@ const ImagePopup = ({ images, currentIndex, onClose, onNext, onPrevious }) => {
                                 damping: 20,
                             }}
                         >
-                            <img
-                                src={images[currentIndex]?.url}
-                                alt="Image"
-                                className="w-[90%] lg:max-w-full max-h-[80vh]"
-                            />
+                            <Suspense
+                                fallback={
+                                    <div className="w-[90%] lg:max-w-full max-h-[80vh] bg-zinc-200 animate-pulse "></div>
+                                }
+                            >
+                                <Image
+                                    height={0}
+                                    width={0}
+                                    sizes="100"
+                                    src={images[currentIndex]?.url}
+                                    alt="Image"
+                                    className="w-[90%] lg:max-w-full max-h-[80vh]"
+                                />
+                            </Suspense>
                         </motion.figure>
                     </motion.div>
                 </div>

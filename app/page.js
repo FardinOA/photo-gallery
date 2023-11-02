@@ -1,5 +1,4 @@
 import Gallery from "@/components/Screens/Home/Compound/Gallery";
-import React from "react";
 
 const Home = () => {
     return (
