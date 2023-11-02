@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 
-export const ImageAsync = ({ src, alt, loaderSize, ...props }) => {
+export const ImageAsync = ({ src, alt, ...props }) => {
     const { height, width, ...rest } = props;
     const [reveal, setReveal] = useState(false);
     const visibility = reveal ? "visible" : "hidden";
@@ -14,40 +14,29 @@ export const ImageAsync = ({ src, alt, loaderSize, ...props }) => {
     }, [src]);
     // console.log(props);
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: reveal ? 1 : 0 }}
-            transition={{ duration: 0.9 }}
-            className="relative"
-            style={{
-                height: "100%",
-            }}
-        >
-            <Image
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
-                {...rest}
-                style={{ ...props.style, visibility, height: "100%" }}
-                onError={() => setReveal(true)}
-                // onLoadStart={() => setReveal(false)}
-                onLoadingComplete={() => setReveal(true)}
-            />
-            <div
-                style={{
-                    display: loader,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    height: "100%",
-                    width: "100%",
-                    ...loaderSize,
-                }}
-                className="image-loading"
+        <motion.div className="relative h-full rounded-lg">
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: reveal ? 1 : 0 }}
+                transition={{ duration: 0.9 }}
             >
-                <div className="image"></div>
-            </div>
+                <Image
+                    src={src}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    {...rest}
+                    style={{ ...props.style, visibility, height: "100%" }}
+                    onError={() => setReveal(true)}
+                    // onLoadStart={() => setReveal(false)}
+                    onLoadingComplete={() => setReveal(true)}
+                />
+            </motion.div>
+            {!reveal && (
+                <div className="  h-full w-full absolute top-0 left-0 rounded-lg image-loading ">
+                    <div className=""></div>
+                </div>
+            )}
         </motion.div>
     );
 };

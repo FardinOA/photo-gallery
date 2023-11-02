@@ -90,7 +90,7 @@ const Gallery = () => {
                                     draggable
                                     className={`group cursor-pointer relative   ${
                                         ind === 0 && `col-span-2 row-span-2 `
-                                    }  w-full border ${
+                                    } min-h-[202.797px]  w-full border ${
                                         dragHover == ele?.url &&
                                         " border-2 scale-105 "
                                     } rounded-lg`}
@@ -114,10 +114,6 @@ const Gallery = () => {
                                     {dragHover == ele?.url ? null : (
                                         <>
                                             <ImageAsync
-                                                // loaderSize={{
-                                                //     height: "202.797px",
-                                                //     width: "100%",
-                                                // }}
                                                 height={0}
                                                 width={0}
                                                 sizes="100"
