@@ -12,7 +12,7 @@ export const ImageAsync = ({ src, alt, ...props }) => {
     useEffect(() => {
         setReveal(false);
     }, [src]);
-    console.log(rest);
+
     return (
         <motion.div className="relative h-full rounded-lg">
             <motion.div

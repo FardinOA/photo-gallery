@@ -113,7 +113,7 @@ const Gallery = () => {
                                     </div>
                                     {dragHover == ele?.url ? null : (
                                         <>
-                                            <ImageAsync
+                                            <Image
                                                 height={0}
                                                 width={0}
                                                 sizes="100"
