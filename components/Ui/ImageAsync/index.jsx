@@ -12,7 +12,7 @@ export const ImageAsync = ({ src, alt, ...props }) => {
     useEffect(() => {
         setReveal(false);
     }, [src]);
-    // console.log(props);
+    console.log(rest);
     return (
         <motion.div className="relative h-full rounded-lg">
             <motion.div
@@ -26,7 +26,7 @@ export const ImageAsync = ({ src, alt, ...props }) => {
                     width={width}
                     height={height}
                     {...rest}
-                    style={{ ...props.style, visibility, height: "100%" }}
+                    style={{ ...props.style, visibility }}
                     onError={() => setReveal(true)}
                     // onLoadStart={() => setReveal(false)}
                     onLoadingComplete={() => setReveal(true)}
